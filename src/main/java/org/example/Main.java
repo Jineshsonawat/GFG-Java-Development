@@ -4,14 +4,24 @@ package org.example;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+
+
+
+    }
+
+//    Hover the method and see how site works.
+    /**
+     * Adds two integers together.
+     *
+     * @param a the first number to add
+     * @param b the second number to add
+     * @return the sum of a and b
+     * This method simply takes two integer arguments and returns their sum.
+     * It demonstrates how Javadoc comments work, which Maven can later use
+     * to generate documentation in the "site" phase.
+     */
+    int add(int a, int b){
+        return a + b;
     }
 }
