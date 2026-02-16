@@ -1,0 +1,62 @@
+Let's Learn Java with the angle of Development.
+
+Maven - Project Management Tool.
+.jar(Java Archive) file - Only contained class files means only have bytecode.
+
+
+       (.jar)
+      JineshApp ------------------------
+                                       |
+                                    MyJavaApp --------------------------- IndiaApp
+                                       |
+      GFG App --------------------------
+       (.jar)
+
+  ** If MyJavaApp need JineshApp to run so they need to install the .jar file of JineshApp, or they need more app then they also need to install all the needed .jar files.
+
+    Now if IndiaApp need MyJavaApp to run so they need all the jar file that MyJavaApp need and jar file of MyJavaApp to run it, So need to install all the files.
+
+    This all process of installing jar files according to the need handled by Maven/Gradle.
+
+   Maven have pom.xml file that contains logic related to building and dependency management of Project.
+
+   ** we see version as x.x.x (3.0.1)
+   (Major change)-------| | |-----------------(internal change) Less Priority.
+                          |
+                       (Minor)
+
+   if you see version in pom.xml
+               <version>1.0-SNAPSHOT</version>
+
+     "-SNAPSHOT" - still in development remove when publish.
+
+     In order to uniquely identify your project it has to be combination of groupId snd artifactId in pom.xml
+
+ -- GroupID - Identifies the organization, company, or project group that produces the artifact.
+
+ -- ArtifactId - The unique name of the specific project/module.
+
+ We can add any dependency in the dependencies tag.
+
+ When we do "mvn clean install" (does call build) is doing like readd the pom file and add the dependencies and other things which is added or not present. it will compile that dependencies along with project in my .jar file.
+
+ MAVEN LIFECYCLE MANAGEMENT
+ Maven has some steps to run while building the Project that called as Lifecycle(1st Thing)
+
+ Comes with 3 builtin Lifecycle
+ 1) Default - Contains or take care of compile(Bytecode), testing, Packaging and deploying the code.
+ 2) Clean - Take Target folder and delete it.
+ 3) Site - It contains(Generate) documentation and report. We see comments regarding the method when we hover the method that is called Java Doc. Does not create anything itself what is given by us shows us.
+
+ Validate - Check if all information is there or not, as dependency mentioned is there or not.
+ Verify - Runs integration tests and checks package validity
+ Install - Installs artifact into local repo (~/.m2/repository)
+
+ Maven Plugins(Workers)(2nd Part) - Everything that we read done by Plugins.
+ It is the reasons why these lifecycle are possible.
+
+ ** Lifecycle are tasks done by Plugins.
+ ** We can add custom Plugins in Pom like dependencies.
+
+ Maven Archetype - In Maven, an Archetype is essentially a project template. It provides a predefined structure and configuration so you can quickly generate new projects that follow best practices without starting from scratch.
+

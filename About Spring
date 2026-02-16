@@ -1,0 +1,123 @@
+Lets Understand with the Example of a restaurant.
+If any user(say us) wants to order something we go to restaurant and waiter provide us the menu, we decide what to order, tell the order to waiter and waiter tell that to the CHEF in the Kitchen.
+Chef prepare the order, pass it to waiter and he pass it to us. So all these thing is a process we need to follow the process.
+
+This whole process follow all the Web Application.
+Waiter  - Frontend (Task are written in menu and user can tell what tas need to be done)
+Kitchen - Backend. (User interact backend with the help of Frontend).
+
+So the Backend can be written in Spring Boot(use only in Java\Kotlin)
+
+                   Show the result
+             ------------------------|           tells backend
+             |      to the user      |             the task
+           User ------------->   Waiter(Menu) ------------------->   Kitchen(Backend)
+                  Select Task          |                              |
+                                       -------------------------------|
+                                               Task result provided
+                                                to show in Frontend
+
+There are 2 things to understand
+case - We need to buy gears for Gym, There are 2 ways to get that.
+1. we can buy all in a store(Nike) where all gears are present.
+2. we can go to different shops and choose the best from different places for different gears.
+
+1. Framework - It's similar to Nike where every single thing is present you need to use in development.
+               Spring is a framework. Angular also.
+
+2. Libraries - Choose where the best option is possible.
+               React is a library.
+
+** Spring Boot is not a separate framework, but a tool built on top of Spring Framework.
+
+----------------------------------------------------------------------------------------------------------
+2 Main Concept (General concept not a Spring thing) (Both are runtime)
+ Related not identical
+
+1. Inversion of Control (IoC) - It is a design principle where the control of Object creation and flow of a program is inverted from the usual "main program that control everything" approach to letting an external framework or runtime code decide when and how things happen.
+
+Main Idea - Instead of your code calling the framework, The framework calls your code at the right time.
+
+Context of DI - IoC means your code does not create dependencies manually(new something()). Instead an external system supplies them.
+
+2. Dependency Injection (DI) - Method to implement a dependency.
+           |
+Specific way of implementing IoC where object are given their dependencies rather then creating them themselves.
+
+somewhere guice library is used where DI is not present.
+
+Three types of DI.
+1. Constructor Injection - Dependency provide by using Constructor.
+2. Setter Injection - Dependency provide by using Setter.
+3. Field Injection - Dependency provide by using Field.
+
+** Always preferred to use Constructor Injection because it forces consistency and Immutability.
+
+Ex- class XYZ {
+//    All there are same we need to define only one
+
+    //    Field - Injection
+        private Demo demo;
+
+    //    Constructor - Injection
+        public XYZ(Demo demo) {
+            this.demo = demo;
+        }
+
+    //    Setter - Injection
+        public void setDemo(Demo demo) {
+            this.demo = demo;
+        }
+
+        public void testXYZ(){
+            demo.testDemo();
+        }
+    }
+
+
+BEAN - To understand bean we need to understand Singleton class.
+                                               |
+                       (It is a type of class that at any point of time only 1 object can be created)
+
+Bean is very Similar to Singleton class.
+When our app will start there are some Object will be created & remain in memory and anybody want to use, it can use it. That is bean.
+
+in Spring Boot we can write @component on class and it will understand it is a bean. (Will use this only)
+
+Learning Perspective in Spring beans configured by using XML.
+Check applicationContext.xml file to see how beans defined in Spring.
+                          |
+We need to define the beans and also define the path of the class that need to be a bean. Have different Tags to use field and their default value.
+
+BEAN FACTORY - The root interface for accessing Spring beans. Provides the basic IoC container functionality.
+Does not support annotations.
+Features:
+Lazy initialization (beans are created only when requested).
+Lightweight, minimal functionality.
+Suitable for simple applications or resource-constrained environments
+
+ApplicationContext - A more advanced IoC container built on top of BeanFactory.Provides enterprise-level features in addition to bean management.
+Features:
+Eager initialization (beans are created at startup by default).
+Supports internationalization (i18n).
+Publishes application events.
+Provides access to resources (files, URLs).
+Supports annotation-based configuration (@Autowired, @ComponentScan).
+Integrates with Spring AOP, transactions, and other enterprise services.
+
+BEAN SCOPE (Read more)
+1. Singleton.(Obj. is created when app starts stays in mem. until app stops)
+2. Request  - Obj. is created when a new request(HTTP) comes.
+3. prototype - A new Obj. is created everytime you informally req the bean.
+4. Session - A new obj. is created for every HTTP session.
+5. WebSocket - One bean per WebSocket session. (Used for chat apps.)
+
+BEAN LIFECYCLE -
+1. Instantiation - The container creates the bean instance (constructor or factory method).
+2. Populate Properties using DI - Dependencies are injected (via setters, constructors, or annotations).
+3. BeanNameAware - If the bean implements BeanNameAware, Spring sets the bean’s name.
+4. BeanPostProcessor (before initialization) - Executes custom logic defined in postProcessBeforeInitialization().
+5. PostConstruct / Initialization phase - Runs initialization logic (@PostConstruct, InitializingBean.afterPropertiesSet(), or XML init-method).
+6. BeanPostProcessor (after initialization) - Executes custom logic defined in postProcessAfterInitialization().
+7. PreDestroy / Destruction phase - Runs cleanup logic (@PreDestroy, DisposableBean.destroy(), or XML destroy-method) before the bean is destroyed.
+8. Bean is Ready - The bean is fully initialized and available for use.
